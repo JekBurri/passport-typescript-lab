@@ -18,17 +18,20 @@ const localStrategy = new LocalStrategy(
   }
 );
 
+type User = {
+  id: number;
+  name: string;
+  email: string;
+  password: string;
+} | null;
 /*
 FIX ME (types) 😭
 */
-passport.serializeUser(function (user: any, done: any) {
+passport.serializeUser(function (user: User, done: (err: any, id: number) => void) {
   done(null, user.id);
 });
 
-/*
-FIX ME (types) 😭
-*/
-passport.deserializeUser(function (id: any, done: any) {
+passport.deserializeUser(function (id: number, done: (err: any, user: User) => void) {
   let user = getUserById(id);
   if (user) {
     done(null, user);
