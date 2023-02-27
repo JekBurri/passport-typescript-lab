@@ -24,11 +24,9 @@ type User = {
   email: string;
   password: string;
 } | null;
-/*
-FIX ME (types) 😭
-*/
-passport.serializeUser(function (user: User, done: (err: any, id: number) => void) {
-  done(null, user.id);
+
+passport.serializeUser(function (user: Express.User, done: (err: any, id?: number) => void) {
+  done(null, (user as any).id);
 });
 
 passport.deserializeUser(function (id: number, done: (err: any, user: User) => void) {
