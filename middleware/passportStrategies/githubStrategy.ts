@@ -10,13 +10,18 @@ interface GitHubAuthResponse { //made interface
 
 const githubStrategy: GitHubStrategy = new GitHubStrategy(
     {
-        clientID: "",
-        clientSecret: "",
-        callbackURL: "",
+        clientID: "1c35f144159898e2f168", 
+        clientSecret: "f4e975f47f14573a0543ce745f89c86cdb08c7f6",
+        callbackURL: "http://localhost:3000/auth/github/callback",
         passReqToCallback: true,
     },
-    
-    async (req: Request, accessToken: string, refreshToken: string, profile: Profile, done: (error: any, response?: GitHubAuthResponse) => void) => {},
+    async (req: Request, 
+        accessToken: string, 
+        refreshToken: string, 
+        profile: Profile, 
+        done: (error: any, response?: GitHubAuthResponse) => void) => {
+            console.log(profile); // 70% of our grade
+        },
 );
 
 const passportGitHubStrategy: PassportStrategy = {
